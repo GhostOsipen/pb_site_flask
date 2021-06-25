@@ -6,10 +6,6 @@ from app.models import User, Book
 # db.session.add(u)
 # db.session.commit()
 
-# u = User(username='susan', email='susan@example.com')
-# db.session.add(u)
-# db.session.commit()
-
 # u = User.query.get(1)
 # p = Book(person='my first book!')
 # db.session.add(p)
