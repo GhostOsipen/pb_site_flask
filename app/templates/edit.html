@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>User: {{ user.username }}</h1>
+
+<form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(size=32, value=note.name) }}
+        {% for error in form.name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.last_name.label }}<br>
+        {{ form.last_name(size=32, value=note.last_name) }}
+        {% for error in form.last_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.phone.label }}<br>
+        {{ form.phone(size=32, value=note.phone) }}
+        {% for error in form.phone.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+{% endblock %}

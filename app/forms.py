@@ -1,3 +1,4 @@
+from os import name
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
@@ -25,3 +26,16 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError("Please use a different email.") 
+
+
+class AddNoteForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    last_name = StringField('Last name', validators=[DataRequired()])
+    phone = StringField('Phone', validators=[DataRequired()])
+    submit = SubmitField('Save')
+
+class EditNoteForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    last_name = StringField('Last name', validators=[DataRequired()])
+    phone = StringField('Phone', validators=[DataRequired()])
+    submit = SubmitField('Save')

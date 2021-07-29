@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Hello, {{ current_user.username }}!</h1>
-        {% for book in books %}
-        <div><p>name: {{ book.name.username }} phone: <b>{{ book.phone }}</b></p></div>
-        {% endfor %}
+<h>
+        <a href="{{ url_for('user', username=current_user.username) }}">Phonebook</a>
+</h1>
 {% endblock %}

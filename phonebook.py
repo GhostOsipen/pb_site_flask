@@ -1,24 +1,29 @@
 from app import app, db
-from app.models import User, Book
+from app.models import User, Note
 
-# u = User(username='max', email='max@example.com')
-# u.set_password("pax")
+# u = User(username='Max', email='max@example.com')
+# u.set_password("123")
 # db.session.add(u)
 # db.session.commit()
 
 # u = User.query.get(1)
-# p = Book(person='my first book!')
+# n = Note(name='Eugene', last_name='Zaycev', phone='88005553535')
 # db.session.add(p)
 # db.session.commit()
 
-#clear database==================
 # users = User.query.all()
 # for u in users:
-#     db.session.delete(u)
-# books = Book.query.all()
-# for p in books:
-#     db.session.delete(p)
-#     db.session.commit()
+#     print(u.id, u.username)
+
+#clear database==================
+# def clear_data(session):
+#     meta = db.metadata
+#     for table in reversed(meta.sorted_tables):
+#         print('Clear table %s' % table)
+#         session.execute(table.delete())
+#     session.commit()
+
+# clear_data(db.session)
 #================================
 
 if __name__ == '__main__':
