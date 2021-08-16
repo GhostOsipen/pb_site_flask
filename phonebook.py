@@ -26,5 +26,6 @@ from app.models import User, Note
 # clear_data(db.session)
 #================================
 
+
 if __name__ == '__main__':
     app.run() 
