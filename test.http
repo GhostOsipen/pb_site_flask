@@ -1,0 +1,56 @@
+GET http://127.0.0.1:5000/admin/users
+
+###
+
+GET http://127.0.0.1:5000/admin/notes
+
+###
+
+GET http://127.0.0.1:5000/user 
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjI5OTgwOTg0fQ.9FKYwSinVXxP4loQtrOweP8b1r7ISroP0syxQpS1Qoc
+
+###
+
+POST http://127.0.0.1:5000/register
+Content-Type: application/json
+
+{
+    "username": "Test2",
+    "password": "123",
+    "email": "test@example"
+}
+
+###
+
+POST http://127.0.0.1:5000/user/note
+Content-Type: application/json
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjI5OTgwMjQzfQ.NWJ615ayjhX6aJ8qKP4qJSTvFlN0Y6K_Lt7MVD9mCDg
+
+{
+    "name": "qwerty",
+    "last_name": "asdfg",
+    "phone": "111111111"
+}
+
+###
+
+PUT http://127.0.0.1:5000//user/note/4
+Content-Type: application/json
+
+{
+    "name": "mamama",
+    "last_name": "dadada",
+    "phone": "555555555"
+}
+
+###
+
+DELETE http://127.0.0.1:5000//user/note/4
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjI5OTgwOTg0fQ.9FKYwSinVXxP4loQtrOweP8b1r7ISroP0syxQpS1Qoc
+
+###
+
+GET http://127.0.0.1:5000/login
+Authorization: Basic Max 123
+
+###

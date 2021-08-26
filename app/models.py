@@ -1,6 +1,14 @@
+from flask import json, request
+from flask.json import jsonify
+from app import app
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import jwt
+from sqlalchemy import inspect
+from functools import wraps
+
+import app
 
 @login.user_loader
 def load_user(id):
@@ -12,6 +20,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     notes = db.relationship('Note', backref='author', lazy='dynamic')
+    
+    def toDict(self): #for jsonify
+        return { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
 
 #hash password
     def set_password(self, password):
@@ -30,5 +41,29 @@ class Note(db.Model):
     phone = db.Column(db.String(140))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    def toDict(self): #for jsonify
+        return { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
+    
     def __repr__(self):
-        return f"Persons {self.name}"
+        return f"Note {self.name}"
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        secret='secret'
+
+        if 'x-access-token' in request.headers:
+            token = request.headers['x-access-token']
+        
+        if not token:
+            return jsonify({'message': 'Token is missing'}), 401
+
+        try:# decoding the payload to fetch the stored details
+            token_data = jwt.decode(token, secret, algorithms="HS256")
+            current_user = User.query.filter_by(id=token_data['id']).first()
+        except:
+            return jsonify({'message': 'Token invalid', 'token': token}), 401
+
+        return f(current_user, *args, **kwargs)
+    return decorated 
