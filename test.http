@@ -7,8 +7,7 @@ GET http://127.0.0.1:5000/admin/notes
 ###
 
 GET http://127.0.0.1:5000/user 
-x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjI5OTgwOTg0fQ.9FKYwSinVXxP4loQtrOweP8b1r7ISroP0syxQpS1Qoc
-
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjMwMzk2MDYwfQ.0Tvdacu0iJ0oeqU1S6r7qAylen5n9R6y9gFcvD2BTyI
 ###
 
 POST http://127.0.0.1:5000/register
@@ -24,7 +23,7 @@ Content-Type: application/json
 
 POST http://127.0.0.1:5000/user/note
 Content-Type: application/json
-x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjI5OTgwMjQzfQ.NWJ615ayjhX6aJ8qKP4qJSTvFlN0Y6K_Lt7MVD9mCDg
+x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjMwMzExNTA1fQ.gMtppAOSX4Wv0nyqtwJs46-amDAmjTrg_jmJW2tCst8
 
 {
     "name": "qwerty",

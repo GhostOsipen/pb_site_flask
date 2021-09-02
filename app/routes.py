@@ -1,8 +1,6 @@
 from os import abort
 from flask import config, render_template, make_response, redirect, url_for, request, abort
 from flask.json import jsonify
-from flask_login.utils import login_required, logout_user
-from werkzeug.security import check_password_hash
 from app import app
 from app import db
 from app.models import User, Note, token_required
@@ -28,7 +26,6 @@ def login():
     if not user:
         return make_response('Could not verify', 401,{'WWW-Authenticate': 'Basic realm="Login required!"'})
 
-    #if check_password_hash(user.password_hash, auth.password):
     if user.check_password(auth.password):   
         secret='secret'
         token = jwt.encode({'id': user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, secret, algorithm="HS256")
@@ -60,10 +57,10 @@ def register():
 def user(current_user):
     user = User.query.filter_by(id=current_user.id).first_or_404()
     notes = user.notes.all()
- 
-    notesArr = []
+    
+    notesArr = {}
     for note in notes:
-        notesArr.append(note.toDict()) 
+        notesArr.append(note.toDict())
     return jsonify(notesArr)
 
 @app.route('/user/note', methods=["POST"])
